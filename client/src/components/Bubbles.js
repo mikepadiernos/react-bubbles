@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Pack } from "@potion/layout";
 import { Svg, Circle } from "@potion/element";
 
+//IMPORT CONTEXTS
+import BubbleContext from "../contexts/BubbleContext";
+
 const Bubbles = ({ colors }) => {
+
   const [bubbleData, setBubbleData] = useState([]);
+
   useEffect(() => {
     const generateBubbleData = colors.map((_, i) => ({
       value: Math.floor(Math.random() * (colors.length * 2)) + 1,
