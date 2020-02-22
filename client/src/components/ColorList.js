@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useParams } from 'react-router-dom';
 import axios from "axios";
 
-const initialColor = {
-  color: "",
-  code: { hex: "" }
-};
+// IMPORT UTILITIES
+import { axiosWithAuth } from "../utilities/axiosWithAuth";
+
+// IMPORT CONTEXTS
+import LoggedContext from "../contexts/LoggedContext";
+import ColorContext from "../contexts/ColorContext";
 
 const ColorList = ({ colors, updateColors }) => {
+
+  const { logged, setLogged, } = useContext(LoggedContext)
+  const { colorList, setColorList, colorItem } = useContext(ColorContext);
+
+  // const { id } = useParams();
+
   console.log(colors);
+
   const [editing, setEditing] = useState(false);
-  const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [colorToEdit, setColorToEdit] = useState(colorItem);
 
   const editColor = color => {
     setEditing(true);
@@ -21,10 +31,32 @@ const ColorList = ({ colors, updateColors }) => {
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
+    axiosWithAuth()
+      .put(`http://localhost:5000/api/colors/${colorList.id}`, colorToEdit)
+      .then(response => {
+        console.log("Updated? ", response);
+
+        setColorList([
+          ...colorList.filter(item => item.id !== colorToEdit.id),
+          colorToEdit
+        ]);
+        setColorToEdit(colorItem);
+        setEditing(false);
+      })
+      .catch(error => {
+        console.log("That's an ERROR! ", error);
+      })
   };
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/colors/${colorToEdit.id}`)
+      .then(response => {
+        console.log(response);
+
+      })
+      .catch (error => console.log(error))
   };
 
   return (
@@ -65,6 +97,7 @@ const ColorList = ({ colors, updateColors }) => {
           <label>
             hex code:
             <input
+              // type="color"
               onChange={e =>
                 setColorToEdit({
                   ...colorToEdit,

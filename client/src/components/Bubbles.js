@@ -3,7 +3,7 @@ import { Pack } from "@potion/layout";
 import { Svg, Circle } from "@potion/element";
 
 //IMPORT CONTEXTS
-import BubbleContext from "../contexts/BubbleContext";
+// import BubbleContext from "../contexts/BubbleContext";
 
 const Bubbles = ({ colors }) => {
 

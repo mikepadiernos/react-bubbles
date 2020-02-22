@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
 
 // IMPORT ASSETS
 import "./styles.scss";
@@ -32,14 +32,14 @@ function App() {
   return (
     <Router>
       <LoggedContext.Provider value={{ logged, setLogged }}>
-        <BubbleContext.Provider value={{ bubble, setBubble, colorItem }}>
-          <ColorContext.Provider value={{ colorList, setColorList }}>
+        <BubbleContext.Provider value={{ bubble, setBubble }}>
+          <ColorContext.Provider value={{ colorList, setColorList, colorItem }}>
             <div className="App">
               <div className="container">
-                <header role="header" id="header" className="header">
+                <header id="header" className="header">
                   <h1>Welcome to the Bubble App!</h1>
                 </header>
-                <main role="content" id="main-content" className="main-content">
+                <main id="main-content" className="main-content">
                   <Route exact path="/" component={Login} />
                   <ProtectedRoute path="/bubbles" component={BubblePage}/>
                 </main>
