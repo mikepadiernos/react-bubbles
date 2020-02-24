@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
 
 // IMPORT ASSETS
-import "./styles.scss";
+// import "./styles.scss";
+import "./css/App.css"
 
 // IMPORT CONTEXTS
 import LoggedContext    from "./contexts/LoggedContext";
@@ -35,19 +36,21 @@ function App() {
         <BubbleContext.Provider value={{ bubble, setBubble }}>
           <ColorContext.Provider value={{ colorList, setColorList, colorItem }}>
             <div className="App">
-              <div className="container">
-                <header id="header" className="header">
+              <header id="header" className="header">
+                <div className="container">
                   <h1>Welcome to the Bubble App!</h1>
-                </header>
-                <main id="main-content" className="main-content">
+                </div>
+              </header>
+              <main id="main-content" className="main-content">
+                <div className="container">
                   <Route exact path="/" component={Login} />
                   <ProtectedRoute path="/bubbles" component={BubblePage}/>
-                </main>
-                {/*
-                  Build a PrivateRoute component that will
+                </div>
+              </main>
+              {/*
+                 Build a PrivateRoute component that will
                   display BubblePage when you're authenticated
-                */}
-              </div>
+              */}
             </div>
           </ColorContext.Provider>
         </BubbleContext.Provider>

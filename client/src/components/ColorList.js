@@ -66,7 +66,7 @@ const ColorList = ({ colors, updateColors }) => {
 
   return (
     <div className="colors-wrap">
-      <p>colors</p>
+      <h2>colors</h2>
       <ul>
         {colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
@@ -92,33 +92,38 @@ const ColorList = ({ colors, updateColors }) => {
           <legend>edit color</legend>
           <label>
             color name:
-            <input
-              onChange={e =>
-                setColorToEdit({ ...colorToEdit, color: e.target.value })
-              }
-              value={colorToEdit.color}
-            />
           </label>
+          <input
+            type="text"
+            name="color-title"
+            id="color-title"
+            onChange={e =>
+              setColorToEdit({ ...colorToEdit, color: e.target.value })
+            }
+            value={colorToEdit.color}
+          />
           <label>
             hex code:
-            <input
-              // type="color"
-              onChange={e =>
-                setColorToEdit({
-                  ...colorToEdit,
-                  code: { hex: e.target.value }
-                })
-              }
-              value={colorToEdit.code.hex}
-            />
           </label>
+          <input
+            type="color"
+            name="color-picker"
+            id="color-picker"
+            onChange={e =>
+              setColorToEdit({
+                ...colorToEdit,
+                code: { hex: e.target.value }
+              })
+            }
+            value={colorToEdit.code.hex}
+          />
           <div className="button-row">
             <button type="submit">save</button>
             <button onClick={() => setEditing(false)}>cancel</button>
           </div>
         </form>
       )}
-      <div className="spacer" />
+      {/*<div className="spacer" />*/}
       {/* stretch - build another form here to add a color */}
     </div>
   );

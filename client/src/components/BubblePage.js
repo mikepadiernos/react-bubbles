@@ -31,10 +31,10 @@ const BubblePage = () => {
   // set that data to the colorList state property
 
   return (
-    <>
+    <section className="section-bubbles">
       <ColorList colors={colorList} updateColors={setColorList} />
       <Bubbles colors={colorList} />
-    </>
+    </section>
   );
 };
 

@@ -46,10 +46,10 @@ const Login = () => {
   // when you have handled the token, navigate to the BubblePage route
   return (
     <>
-      <div>
+      <div className="form-login">
         <form onSubmit={handleSubmit}>
           <h2>Login</h2>
-          <div>
+          <div className="form-body">
             <label>Username:</label>
             <input
               name="username"
@@ -58,7 +58,7 @@ const Login = () => {
               value={login.username}
             />
           </div>
-          <div>
+          <div className="form-body">
             <label>Password:</label>
             <input
               name="password"
